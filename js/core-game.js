@@ -10,6 +10,10 @@ var timerIntervalId = null;
 var isFirstClick = true;
 var isGameOver = false;
 
+function isValidBoardConfig() {
+    return MINE_COUNT > 0 && MINE_COUNT < BOARD_SIZE * BOARD_SIZE;
+}
+
 function buildBoardData() {
     var row;
     var col;

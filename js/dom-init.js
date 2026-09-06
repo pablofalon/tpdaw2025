@@ -11,6 +11,11 @@ var resetButtonElement;
 var resultModalElement;
 var resultTitleElement;
 var resultMessageElement;
+var configErrorModalElement;
+
+function showConfigErrorModal() {
+    configErrorModalElement.classList.remove('hidden');
+}
 
 function showNameModal() {
     nameModalElement.classList.remove('hidden');
@@ -43,6 +48,11 @@ function initializeDom() {
     resultModalElement = document.getElementById('result-modal');
     resultTitleElement = document.getElementById('result-title');
     resultMessageElement = document.getElementById('result-message');
+    configErrorModalElement = document.getElementById('config-error-modal');
+    if (!isValidBoardConfig()) {
+        showConfigErrorModal();
+        return;
+    }
     buildBoardData();
     placeMines();
     calculateAdjacentMines();
