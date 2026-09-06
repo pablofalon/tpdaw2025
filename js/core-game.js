@@ -4,6 +4,7 @@ var BOARD_SIZE = 8;
 var MINE_COUNT = 10;
 var playerName = '';
 var gameBoard = [];
+var minesRemaining = MINE_COUNT;
 
 function buildBoardData() {
     var row;
@@ -92,7 +93,13 @@ function toggleFlag(row, col) {
         return;
     }
     cell.isFlagged = !cell.isFlagged;
+    if (cell.isFlagged) {
+        minesRemaining--;
+    } else {
+        minesRemaining++;
+    }
     updateCellFlagVisual(cell);
+    updateMineCounterDisplay();
 }
 
 function calculateAdjacentMines() {
