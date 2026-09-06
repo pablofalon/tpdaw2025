@@ -13,6 +13,12 @@ function isValidContactMessage(message) {
     return message.trim().length > 5;
 }
 
+function buildMailtoUrl(name, email, message) {
+    var subject = 'Contacto desde Buscaminas - ' + name;
+    var body = 'Nombre: ' + name + '\n' + 'Correo: ' + email + '\n' + 'Mensaje: ' + message;
+    return 'mailto:pablofalon@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
 function handleContactFormSubmit(submitEvent) {
     var isFormValid = true;
     submitEvent.preventDefault();
@@ -37,6 +43,11 @@ function handleContactFormSubmit(submitEvent) {
     if (!isFormValid) {
         return;
     }
+    window.location.href = buildMailtoUrl(
+        contactNameInputElement.value.trim(),
+        contactEmailInputElement.value.trim(),
+        contactMessageInputElement.value.trim()
+    );
 }
 
 function attachContactEventListeners() {
