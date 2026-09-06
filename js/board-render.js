@@ -22,6 +22,7 @@ function renderBoard() {
     var cellElement;
     var elementRow;
     clearBoardElement();
+    gameBoardElement.className = 'game-board size-' + BOARD_SIZE;
     cellElements = [];
     for (row = 0; row < BOARD_SIZE; row++) {
         elementRow = [];

@@ -10,6 +10,11 @@ var timerIntervalId = null;
 var isFirstClick = true;
 var isGameOver = false;
 
+function setDifficulty(size, mineCount) {
+    BOARD_SIZE = size;
+    MINE_COUNT = mineCount;
+}
+
 function isValidBoardConfig() {
     return MINE_COUNT > 0 && MINE_COUNT < BOARD_SIZE * BOARD_SIZE;
 }

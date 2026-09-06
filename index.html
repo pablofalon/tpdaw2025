@@ -18,7 +18,7 @@
                 <button id="reset-button" class="reset-button" type="button">🙂</button>
                 <div id="timer-display" class="counter-display">000</div>
             </div>
-            <div id="game-board" class="game-board"></div>
+            <div id="game-board" class="game-board size-8"></div>
         </section>
     </main>
     <footer class="page-footer">
@@ -32,6 +32,11 @@
             <label for="player-name-input">Ingresá tu nombre para jugar</label>
             <input id="player-name-input" class="modal-input" type="text" maxlength="20">
             <p id="name-error" class="modal-error hidden">El nombre debe tener al menos 3 letras.</p>
+            <div id="difficulty-selector" class="difficulty-selector">
+                <button type="button" class="difficulty-button selected" data-size="8" data-mines="10">Fácil</button>
+                <button type="button" class="difficulty-button" data-size="12" data-mines="25">Medio</button>
+                <button type="button" class="difficulty-button" data-size="16" data-mines="40">Difícil</button>
+            </div>
             <button id="name-submit-button" class="modal-button" type="button">Jugar</button>
         </div>
     </div>

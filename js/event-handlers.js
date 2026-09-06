@@ -11,9 +11,25 @@ function handleNameSubmit() {
         playerName = enteredName.trim();
         nameErrorElement.classList.add('hidden');
         nameModalElement.classList.add('hidden');
+        resetGame();
     } else {
         nameErrorElement.classList.remove('hidden');
     }
+}
+
+function handleDifficultyButtonClick(clickEvent) {
+    var targetElement = clickEvent.target;
+    var difficultyButtons;
+    var buttonIndex;
+    if (!targetElement.classList.contains('difficulty-button')) {
+        return;
+    }
+    difficultyButtons = difficultySelectorElement.querySelectorAll('.difficulty-button');
+    for (buttonIndex = 0; buttonIndex < difficultyButtons.length; buttonIndex++) {
+        difficultyButtons[buttonIndex].classList.remove('selected');
+    }
+    targetElement.classList.add('selected');
+    setDifficulty(parseInt(targetElement.dataset.size, 10), parseInt(targetElement.dataset.mines, 10));
 }
 
 function handleBoardClick(clickEvent) {
@@ -61,6 +77,7 @@ function handleKeyDown(keyEvent) {
 
 function attachEventListeners() {
     nameSubmitButtonElement.addEventListener('click', handleNameSubmit);
+    difficultySelectorElement.addEventListener('click', handleDifficultyButtonClick);
     gameBoardElement.addEventListener('click', handleBoardClick);
     gameBoardElement.addEventListener('contextmenu', handleBoardRightClick);
     resetButtonElement.addEventListener('click', handleResetButtonClick);

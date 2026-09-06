@@ -4,6 +4,7 @@ var nameModalElement;
 var playerNameInputElement;
 var nameErrorElement;
 var nameSubmitButtonElement;
+var difficultySelectorElement;
 var gameBoardElement;
 var mineCounterElement;
 var timerDisplayElement;
@@ -41,6 +42,7 @@ function initializeDom() {
     playerNameInputElement = document.getElementById('player-name-input');
     nameErrorElement = document.getElementById('name-error');
     nameSubmitButtonElement = document.getElementById('name-submit-button');
+    difficultySelectorElement = document.getElementById('difficulty-selector');
     gameBoardElement = document.getElementById('game-board');
     mineCounterElement = document.getElementById('mine-counter');
     timerDisplayElement = document.getElementById('timer-display');
@@ -53,12 +55,6 @@ function initializeDom() {
         showConfigErrorModal();
         return;
     }
-    buildBoardData();
-    placeMines();
-    calculateAdjacentMines();
-    renderBoard();
-    updateMineCounterDisplay();
-    updateTimerDisplay();
     showNameModal();
 }
 

@@ -70,8 +70,19 @@ body {
 .game-board {
     display: flex;
     flex-wrap: wrap;
-    width: 256px;
     background-color: #808080;
+}
+
+.game-board.size-8 {
+    width: 256px;
+}
+
+.game-board.size-12 {
+    width: 384px;
+}
+
+.game-board.size-16 {
+    width: 512px;
 }
 
 .board-cell {
@@ -222,6 +233,26 @@ body {
     color: #0000ff;
 }
 
+.difficulty-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.difficulty-button {
+    flex: 1;
+    padding: 8px 4px;
+    font-size: 13px;
+    color: #000000;
+    background-color: #c0c0c0;
+    border: 2px solid #808080;
+}
+
+.difficulty-button.selected {
+    color: #ffffff;
+    background-color: #4caf50;
+}
+
 @media (max-width: 400px) {
     .page-header h1 {
         font-size: 22px;
@@ -236,8 +267,16 @@ body {
         padding: 8px;
     }
 
-    .game-board {
+    .game-board.size-8 {
         width: 232px;
+    }
+
+    .game-board.size-12 {
+        width: 348px;
+    }
+
+    .game-board.size-16 {
+        width: 464px;
     }
 
     .board-cell {
