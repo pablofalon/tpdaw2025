@@ -24,6 +24,15 @@
     <footer class="page-footer">
         <p>Trabajo final - Buscaminas</p>
     </footer>
+    <div id="name-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <h2>Bienvenido a Buscaminas</h2>
+            <label for="player-name-input">Ingresá tu nombre para jugar</label>
+            <input id="player-name-input" class="modal-input" type="text" maxlength="20">
+            <p id="name-error" class="modal-error hidden">El nombre debe tener al menos 3 letras.</p>
+            <button id="name-submit-button" class="modal-button" type="button">Jugar</button>
+        </div>
+    </div>
     <script src="js/core-game.js"></script>
 </body>
 </html>

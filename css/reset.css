@@ -25,3 +25,7 @@ button {
     background: none;
     cursor: pointer;
 }
+
+.hidden {
+    display: none;
+}
