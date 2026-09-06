@@ -62,6 +62,15 @@ function countAdjacentMines(row, col) {
     return mineCount;
 }
 
+function revealCell(row, col) {
+    var cell = gameBoard[row][col];
+    if (cell.isRevealed || cell.isFlagged) {
+        return;
+    }
+    cell.isRevealed = true;
+    updateCellElement(cell);
+}
+
 function calculateAdjacentMines() {
     var row;
     var col;

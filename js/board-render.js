@@ -1,5 +1,7 @@
 'use strict';
 
+var cellElements = [];
+
 function createCellElement(cellData) {
     var cellElement = document.createElement('div');
     cellElement.className = 'board-cell';
@@ -18,11 +20,28 @@ function renderBoard() {
     var row;
     var col;
     var cellElement;
+    var elementRow;
     clearBoardElement();
+    cellElements = [];
     for (row = 0; row < BOARD_SIZE; row++) {
+        elementRow = [];
         for (col = 0; col < BOARD_SIZE; col++) {
             cellElement = createCellElement(gameBoard[row][col]);
             gameBoardElement.appendChild(cellElement);
+            elementRow.push(cellElement);
         }
+        cellElements.push(elementRow);
+    }
+}
+
+function updateCellElement(cellData) {
+    var cellElement = cellElements[cellData.row][cellData.col];
+    cellElement.classList.add('revealed');
+    if (cellData.isMine) {
+        cellElement.classList.add('mine');
+        cellElement.textContent = '💣';
+    } else if (cellData.adjacentMines > 0) {
+        cellElement.classList.add('adjacent-' + cellData.adjacentMines);
+        cellElement.textContent = cellData.adjacentMines;
     }
 }
