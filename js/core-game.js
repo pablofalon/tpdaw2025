@@ -8,6 +8,7 @@ var minesRemaining = MINE_COUNT;
 var timerSeconds = 0;
 var timerIntervalId = null;
 var isFirstClick = true;
+var isGameOver = false;
 
 function buildBoardData() {
     var row;
@@ -75,9 +76,54 @@ function startTimer() {
     timerIntervalId = setInterval(incrementTimer, 1000);
 }
 
+function stopTimer() {
+    clearInterval(timerIntervalId);
+    timerIntervalId = null;
+}
+
+function revealAllMines() {
+    var row;
+    var col;
+    var cell;
+    for (row = 0; row < BOARD_SIZE; row++) {
+        for (col = 0; col < BOARD_SIZE; col++) {
+            cell = gameBoard[row][col];
+            if (cell.isMine && !cell.isRevealed) {
+                cell.isRevealed = true;
+                updateCellElement(cell);
+            }
+        }
+    }
+}
+
+function endGame(didWin) {
+    isGameOver = true;
+    stopTimer();
+    if (!didWin) {
+        revealAllMines();
+    }
+    showResultModal(didWin);
+}
+
+function checkWinCondition() {
+    var row;
+    var col;
+    var revealedSafeCount = 0;
+    for (row = 0; row < BOARD_SIZE; row++) {
+        for (col = 0; col < BOARD_SIZE; col++) {
+            if (!gameBoard[row][col].isMine && gameBoard[row][col].isRevealed) {
+                revealedSafeCount++;
+            }
+        }
+    }
+    if (revealedSafeCount === BOARD_SIZE * BOARD_SIZE - MINE_COUNT) {
+        endGame(true);
+    }
+}
+
 function revealCell(row, col) {
     var cell = gameBoard[row][col];
-    if (cell.isRevealed || cell.isFlagged) {
+    if (isGameOver || cell.isRevealed || cell.isFlagged) {
         return;
     }
     if (isFirstClick) {
@@ -86,9 +132,14 @@ function revealCell(row, col) {
     }
     cell.isRevealed = true;
     updateCellElement(cell);
-    if (!cell.isMine && cell.adjacentMines === 0) {
+    if (cell.isMine) {
+        endGame(false);
+        return;
+    }
+    if (cell.adjacentMines === 0) {
         revealAdjacentCells(row, col);
     }
+    checkWinCondition();
 }
 
 function revealAdjacentCells(row, col) {
@@ -105,7 +156,7 @@ function revealAdjacentCells(row, col) {
 
 function toggleFlag(row, col) {
     var cell = gameBoard[row][col];
-    if (cell.isRevealed) {
+    if (isGameOver || cell.isRevealed) {
         return;
     }
     cell.isFlagged = !cell.isFlagged;
