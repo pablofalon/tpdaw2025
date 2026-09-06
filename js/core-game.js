@@ -69,6 +69,21 @@ function revealCell(row, col) {
     }
     cell.isRevealed = true;
     updateCellElement(cell);
+    if (!cell.isMine && cell.adjacentMines === 0) {
+        revealAdjacentCells(row, col);
+    }
+}
+
+function revealAdjacentCells(row, col) {
+    var neighborRow;
+    var neighborCol;
+    for (neighborRow = row - 1; neighborRow <= row + 1; neighborRow++) {
+        for (neighborCol = col - 1; neighborCol <= col + 1; neighborCol++) {
+            if (isValidCell(neighborRow, neighborCol) && (neighborRow !== row || neighborCol !== col)) {
+                revealCell(neighborRow, neighborCol);
+            }
+        }
+    }
 }
 
 function calculateAdjacentMines() {
