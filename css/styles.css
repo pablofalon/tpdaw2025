@@ -24,7 +24,9 @@ body {
 
 .page-footer {
     display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 16px;
     padding: 16px 0;
 }
 
@@ -180,4 +182,42 @@ body {
     font-size: 16px;
     color: #ffffff;
     background-color: #4caf50;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    padding: 24px;
+    background-color: #f0f0f0;
+    border: 2px solid #808080;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-field label {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-input,
+.form-textarea {
+    padding: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 2px solid #808080;
+}
+
+.form-textarea {
+    min-height: 96px;
+    resize: vertical;
+}
+
+.footer-link {
+    font-size: 14px;
+    color: #0000ff;
 }
