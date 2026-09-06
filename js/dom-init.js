@@ -22,6 +22,8 @@ function initializeDom() {
     mineCounterElement = document.getElementById('mine-counter');
     timerDisplayElement = document.getElementById('timer-display');
     resetButtonElement = document.getElementById('reset-button');
+    buildBoardData();
+    renderBoard();
     showNameModal();
 }
 

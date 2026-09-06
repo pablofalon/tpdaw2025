@@ -68,7 +68,16 @@ body {
 .game-board {
     display: flex;
     flex-wrap: wrap;
+    width: 256px;
     background-color: #808080;
+}
+
+.board-cell {
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #808080;
+    background-color: #c0c0c0;
 }
 
 .modal-overlay {
