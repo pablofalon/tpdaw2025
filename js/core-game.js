@@ -154,6 +154,41 @@ function revealAdjacentCells(row, col) {
     }
 }
 
+function countFlaggedNeighbors(row, col) {
+    var neighborRow;
+    var neighborCol;
+    var flaggedCount = 0;
+    for (neighborRow = row - 1; neighborRow <= row + 1; neighborRow++) {
+        for (neighborCol = col - 1; neighborCol <= col + 1; neighborCol++) {
+            if (isValidCell(neighborRow, neighborCol) && (neighborRow !== row || neighborCol !== col)) {
+                if (gameBoard[neighborRow][neighborCol].isFlagged) {
+                    flaggedCount++;
+                }
+            }
+        }
+    }
+    return flaggedCount;
+}
+
+function chordCell(row, col) {
+    var cell = gameBoard[row][col];
+    var neighborRow;
+    var neighborCol;
+    if (isGameOver || !cell.isRevealed || cell.isMine || cell.adjacentMines === 0) {
+        return;
+    }
+    if (countFlaggedNeighbors(row, col) !== cell.adjacentMines) {
+        return;
+    }
+    for (neighborRow = row - 1; neighborRow <= row + 1; neighborRow++) {
+        for (neighborCol = col - 1; neighborCol <= col + 1; neighborCol++) {
+            if (isValidCell(neighborRow, neighborCol) && (neighborRow !== row || neighborCol !== col)) {
+                revealCell(neighborRow, neighborCol);
+            }
+        }
+    }
+}
+
 function toggleFlag(row, col) {
     var cell = gameBoard[row][col];
     if (isGameOver || cell.isRevealed) {

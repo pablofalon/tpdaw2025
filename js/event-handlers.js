@@ -25,7 +25,11 @@ function handleBoardClick(clickEvent) {
     }
     row = parseInt(targetElement.dataset.row, 10);
     col = parseInt(targetElement.dataset.col, 10);
-    revealCell(row, col);
+    if (gameBoard[row][col].isRevealed) {
+        chordCell(row, col);
+    } else {
+        revealCell(row, col);
+    }
 }
 
 function handleBoardRightClick(clickEvent) {
