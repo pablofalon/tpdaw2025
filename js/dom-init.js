@@ -27,6 +27,10 @@ function showResultModal(didWin) {
     resultModalElement.classList.remove('hidden');
 }
 
+function hideResultModal() {
+    resultModalElement.classList.add('hidden');
+}
+
 function initializeDom() {
     nameModalElement = document.getElementById('name-modal');
     playerNameInputElement = document.getElementById('player-name-input');

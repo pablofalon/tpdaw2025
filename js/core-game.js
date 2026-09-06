@@ -180,3 +180,18 @@ function calculateAdjacentMines() {
         }
     }
 }
+
+function resetGame() {
+    isGameOver = false;
+    isFirstClick = true;
+    minesRemaining = MINE_COUNT;
+    timerSeconds = 0;
+    stopTimer();
+    buildBoardData();
+    placeMines();
+    calculateAdjacentMines();
+    renderBoard();
+    updateMineCounterDisplay();
+    updateTimerDisplay();
+    hideResultModal();
+}

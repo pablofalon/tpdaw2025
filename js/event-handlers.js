@@ -41,10 +41,26 @@ function handleBoardRightClick(clickEvent) {
     toggleFlag(row, col);
 }
 
+function handleResetButtonClick() {
+    resetGame();
+}
+
+function handleKeyDown(keyEvent) {
+    if (keyEvent.target.tagName.toLowerCase() === 'input') {
+        return;
+    }
+    if (keyEvent.code === 'Space') {
+        keyEvent.preventDefault();
+        resetGame();
+    }
+}
+
 function attachEventListeners() {
     nameSubmitButtonElement.addEventListener('click', handleNameSubmit);
     gameBoardElement.addEventListener('click', handleBoardClick);
     gameBoardElement.addEventListener('contextmenu', handleBoardRightClick);
+    resetButtonElement.addEventListener('click', handleResetButtonClick);
+    document.addEventListener('keydown', handleKeyDown);
 }
 
 document.addEventListener('DOMContentLoaded', attachEventListeners);
