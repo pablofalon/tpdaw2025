@@ -25,3 +25,51 @@ function buildBoardData() {
         gameBoard.push(boardRow);
     }
 }
+
+function placeMines() {
+    var minesPlaced;
+    var randomRow;
+    var randomCol;
+    minesPlaced = 0;
+    while (minesPlaced < MINE_COUNT) {
+        randomRow = Math.floor(Math.random() * BOARD_SIZE);
+        randomCol = Math.floor(Math.random() * BOARD_SIZE);
+        if (!gameBoard[randomRow][randomCol].isMine) {
+            gameBoard[randomRow][randomCol].isMine = true;
+            minesPlaced++;
+        }
+    }
+}
+
+function isValidCell(row, col) {
+    return row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE;
+}
+
+function countAdjacentMines(row, col) {
+    var neighborRow;
+    var neighborCol;
+    var mineCount;
+    mineCount = 0;
+    for (neighborRow = row - 1; neighborRow <= row + 1; neighborRow++) {
+        for (neighborCol = col - 1; neighborCol <= col + 1; neighborCol++) {
+            if (isValidCell(neighborRow, neighborCol) && (neighborRow !== row || neighborCol !== col)) {
+                if (gameBoard[neighborRow][neighborCol].isMine) {
+                    mineCount++;
+                }
+            }
+        }
+    }
+    return mineCount;
+}
+
+function calculateAdjacentMines() {
+    var row;
+    var col;
+    for (row = 0; row < BOARD_SIZE; row++) {
+        for (col = 0; col < BOARD_SIZE; col++) {
+            if (!gameBoard[row][col].isMine) {
+                gameBoard[row][col].adjacentMines = countAdjacentMines(row, col);
+            }
+        }
+    }
+}

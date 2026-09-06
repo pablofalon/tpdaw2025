@@ -23,6 +23,8 @@ function initializeDom() {
     timerDisplayElement = document.getElementById('timer-display');
     resetButtonElement = document.getElementById('reset-button');
     buildBoardData();
+    placeMines();
+    calculateAdjacentMines();
     renderBoard();
     showNameModal();
 }
