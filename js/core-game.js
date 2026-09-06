@@ -5,6 +5,9 @@ var MINE_COUNT = 10;
 var playerName = '';
 var gameBoard = [];
 var minesRemaining = MINE_COUNT;
+var timerSeconds = 0;
+var timerIntervalId = null;
+var isFirstClick = true;
 
 function buildBoardData() {
     var row;
@@ -63,10 +66,23 @@ function countAdjacentMines(row, col) {
     return mineCount;
 }
 
+function incrementTimer() {
+    timerSeconds++;
+    updateTimerDisplay();
+}
+
+function startTimer() {
+    timerIntervalId = setInterval(incrementTimer, 1000);
+}
+
 function revealCell(row, col) {
     var cell = gameBoard[row][col];
     if (cell.isRevealed || cell.isFlagged) {
         return;
+    }
+    if (isFirstClick) {
+        isFirstClick = false;
+        startTimer();
     }
     cell.isRevealed = true;
     updateCellElement(cell);

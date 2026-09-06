@@ -27,6 +27,7 @@ function initializeDom() {
     calculateAdjacentMines();
     renderBoard();
     updateMineCounterDisplay();
+    updateTimerDisplay();
     showNameModal();
 }
 

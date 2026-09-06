@@ -16,3 +16,7 @@ function formatCounterValue(value) {
 function updateMineCounterDisplay() {
     mineCounterElement.textContent = formatCounterValue(minesRemaining);
 }
+
+function updateTimerDisplay() {
+    timerDisplayElement.textContent = formatCounterValue(timerSeconds);
+}
