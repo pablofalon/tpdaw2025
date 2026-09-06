@@ -28,9 +28,23 @@ function handleBoardClick(clickEvent) {
     revealCell(row, col);
 }
 
+function handleBoardRightClick(clickEvent) {
+    var targetElement = clickEvent.target;
+    var row;
+    var col;
+    clickEvent.preventDefault();
+    if (!targetElement.classList.contains('board-cell')) {
+        return;
+    }
+    row = parseInt(targetElement.dataset.row, 10);
+    col = parseInt(targetElement.dataset.col, 10);
+    toggleFlag(row, col);
+}
+
 function attachEventListeners() {
     nameSubmitButtonElement.addEventListener('click', handleNameSubmit);
     gameBoardElement.addEventListener('click', handleBoardClick);
+    gameBoardElement.addEventListener('contextmenu', handleBoardRightClick);
 }
 
 document.addEventListener('DOMContentLoaded', attachEventListeners);

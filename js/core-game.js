@@ -86,6 +86,15 @@ function revealAdjacentCells(row, col) {
     }
 }
 
+function toggleFlag(row, col) {
+    var cell = gameBoard[row][col];
+    if (cell.isRevealed) {
+        return;
+    }
+    cell.isFlagged = !cell.isFlagged;
+    updateCellFlagVisual(cell);
+}
+
 function calculateAdjacentMines() {
     var row;
     var col;

@@ -34,6 +34,17 @@ function renderBoard() {
     }
 }
 
+function updateCellFlagVisual(cellData) {
+    var cellElement = cellElements[cellData.row][cellData.col];
+    if (cellData.isFlagged) {
+        cellElement.classList.add('flagged');
+        cellElement.textContent = '🚩';
+    } else {
+        cellElement.classList.remove('flagged');
+        cellElement.textContent = '';
+    }
+}
+
 function updateCellElement(cellData) {
     var cellElement = cellElements[cellData.row][cellData.col];
     cellElement.classList.add('revealed');

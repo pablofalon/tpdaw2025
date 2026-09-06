@@ -94,6 +94,10 @@ body {
     background-color: #ff4d4d;
 }
 
+.board-cell.flagged {
+    background-color: #ffe066;
+}
+
 .board-cell.adjacent-1 {
     color: #0000ff;
 }
