@@ -1,13 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscaminas</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<link rel="stylesheet" href="style.css">
 <body>
-    <h1>Buscaminas</h1>
-    <script src="app.js"></script>
+    <header class="page-header">
+        <h1>Buscaminas</h1>
+    </header>
+    <main class="page-main">
+        <section class="game-container">
+            <div class="game-panel">
+                <div id="mine-counter" class="counter-display">000</div>
+                <button id="reset-button" class="reset-button" type="button">🙂</button>
+                <div id="timer-display" class="counter-display">000</div>
+            </div>
+            <div id="game-board" class="game-board size-8"></div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <p>Trabajo final - Buscaminas</p>
+        <a href="contact.html" class="footer-link">Contacto</a>
+        <a href="https://github.com/pablofalon/tpdaw2025" class="footer-link" target="_blank" rel="noopener noreferrer">Repositorio en GitHub</a>
+    </footer>
+    <div id="name-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <h2>Bienvenido a Buscaminas</h2>
+            <label for="player-name-input">Ingresá tu nombre para jugar</label>
+            <input id="player-name-input" class="modal-input" type="text" maxlength="20">
+            <p id="name-error" class="modal-error hidden">El nombre debe tener al menos 3 letras.</p>
+            <div id="difficulty-selector" class="difficulty-selector">
+                <button type="button" class="difficulty-button selected" data-size="8" data-mines="10">Fácil</button>
+                <button type="button" class="difficulty-button" data-size="12" data-mines="25">Medio</button>
+                <button type="button" class="difficulty-button" data-size="16" data-mines="40">Difícil</button>
+            </div>
+            <button id="name-submit-button" class="modal-button" type="button">Jugar</button>
+        </div>
+    </div>
+    <div id="result-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <h2 id="result-title"></h2>
+            <p id="result-message"></p>
+        </div>
+    </div>
+    <div id="config-error-modal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <h2>Error de configuración</h2>
+            <p>La cantidad de minas configurada no es válida para el tamaño del tablero.</p>
+        </div>
+    </div>
+    <script src="js/core-game.js"></script>
+    <script src="js/board-render.js"></script>
+    <script src="js/panel-render.js"></script>
+    <script src="js/dom-init.js"></script>
+    <script src="js/event-handlers.js"></script>
 </body>
 </html>
